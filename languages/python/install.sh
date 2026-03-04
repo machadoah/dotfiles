@@ -13,8 +13,10 @@ echo "✅ Python is already installed."
 
 # Install UV
 echo "📦 Installing UV..."
-bash curl -LsSf https://astral.sh/uv/install.sh | sh
+curl -LsSf https://astral.sh/uv/install.sh | sh
 echo "✅ UV installed successfully."
+
+source $HOME/.local/bin/env
 
 # Verify installations
 echo "🔍 Verifying installations..."
@@ -24,8 +26,8 @@ echo "✅ Installations verified successfully."
 # Install Python with UV
 echo "🐍 Installing Python with UV..."
 
-uv install python --default
+uv python install --default
 echo "✅ Python installed successfully."
 
 ## Install other versions of Python
-uv install python 3.13 3.12
+uv python install 3.13 3.12

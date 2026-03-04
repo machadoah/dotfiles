@@ -31,7 +31,7 @@ echo "✅ GitHub CLI installed successfully."
 
 # Authenticate GitHub CLI
 echo "🔐 Authenticating GitHub CLI..."
-bash gh auth login
+gh auth login
 
 echo "✅ GitHub CLI authenticated successfully."
 
