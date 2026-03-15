@@ -11,7 +11,7 @@
         "allowed": true
     },
     "terminal": {
-        "font_family": ".ZedMono"
+        "font_family": ".ZedMono, JetBrains Mono, Fira Code, monospace"
     },
     "wsl_connections": [
         {

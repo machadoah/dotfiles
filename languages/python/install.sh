@@ -1,33 +1,42 @@
 #!/bin/zsh
 
 : << EOF
-    ...
+    Install Python using UV (Astral).
 EOF
 
-echo "🐍 The Python installation."
-read -p "Press [Enter] to continue or [Ctrl+C] to abort..."
+echo "🐍 Python installation script"
 
-# Verify Python is installed
-python3 --version
-echo "✅ Python is already installed."
+# Install UV if not already installed
+if command -v uv &> /dev/null; then
+    echo "✅ UV is already installed."
+    uv --version
+else
+    echo "📦 Installing UV..."
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    echo "✅ UV installed successfully."
+fi
 
-# Install UV
-echo "📦 Installing UV..."
-curl -LsSf https://astral.sh/uv/install.sh | sh
-echo "✅ UV installed successfully."
+# Source UV environment
+if [[ -f "$HOME/.local/bin/env" ]]; then
+    source "$HOME/.local/bin/env"
+fi
 
-source $HOME/.local/bin/env
-
-# Verify installations
-echo "🔍 Verifying installations..."
+# Verify UV installation
+echo "🔍 Verifying UV installation..."
 uv --version
-echo "✅ Installations verified successfully."
+echo "✅ UV installation verified."
 
 # Install Python with UV
 echo "🐍 Installing Python with UV..."
-
 uv python install --default
 echo "✅ Python installed successfully."
 
-## Install other versions of Python
+# Install other versions of Python
+echo "📦 Installing additional Python versions (3.13, 3.12)..."
 uv python install 3.13 3.12
+echo "✅ Additional Python versions installed."
+
+# Verify installations
+echo "🔍 Verifying Python installations..."
+uv python list
+echo "✅ Python installations verified successfully."

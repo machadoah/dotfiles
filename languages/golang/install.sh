@@ -1,17 +1,21 @@
 #!/bin/zsh
 
 : << EOF
-    ...
+    Install Go (Golang) using APT repository.
 EOF
 
-echo "🐹 The Go installation."
-read -p "Press [Enter] to continue or [Ctrl+C] to abort..."
+echo "🐹 Go installation script"
 
-# Install dependencies
+# Check if Go is already installed
+if command -v go &> /dev/null; then
+    echo "⚠️ Go is already installed:"
+    go version
+    read -p "Press [Enter] to continue anyway or [Ctrl+C] to abort..."
+fi
+
 echo "🔧 Installing dependencies..."
 sudo apt update
 sudo apt install -y curl software-properties-common
-
 
 # Add Go repository
 echo "➕ Adding Go repository..."
@@ -20,7 +24,6 @@ sudo apt update
 
 # Download and install Go
 echo "📥 Downloading and installing Go..."
-
 sudo apt install -y golang-go
 echo "✅ Go installed successfully."
 

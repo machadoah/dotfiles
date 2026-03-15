@@ -26,7 +26,7 @@ cd dotfiles/install
 3.  Execute o script de pré-instalação para Linux:
 
 ```bash
-bash linux-pre-insitall.sh
+bash linux-pre-install.sh
 ```
 
 Nele será instalado e configurado:
@@ -35,7 +35,7 @@ Nele será instalado e configurado:
 - GitHub CLI
 - ZSH
 
-4.  Após a execução do script, o sistema será reiniciado automaticamente para aplicar as mudanças.
+4.  Após a execução do script, você será perguntado se deseja reiniciar o sistema para aplicar as mudanças.
 
 5.  Após o reinício, você deve executar o script principal de instalação:
 
@@ -46,8 +46,8 @@ bash linux-install.sh
 Nele será configurado:
 
 - Oh My Zsh
-- Plugins do ZSH
-- Startship
+- Plugins do ZSH (Zinit, fast-syntax-highlighting, autosuggestions, completions)
+- Starship prompt
 
 ### Instalação de Linguagens
 

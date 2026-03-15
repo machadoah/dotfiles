@@ -1,56 +1,91 @@
 #!/bin/zsh
 
 : << EOF
-    ...
+    Install Node.js using NVM, plus pnpm, Yarn, and Bun.
 EOF
 
-echo "🥬 The Node installation."
-read -p "Press [Enter] to continue or [Ctrl+C] to abort..."
+echo "🥬 Node.js installation script"
 
-# Download and install nvm (Node Version Manager):
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+# Download and install nvm (Node Version Manager) if not installed
+if [[ -d "$HOME/.nvm" ]]; then
+    echo "✅ NVM is already installed."
+else
+    echo "📦 Installing NVM..."
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    echo "✅ NVM installed successfully."
+fi
 
-# in lieu of restarting the shell
-\. "$HOME/.nvm/nvm.sh"
+# Source NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# Verify nvm installation:
+# Verify nvm installation
+echo "🔍 NVM version:"
 nvm --version
-echo "✅ nvm installed successfully."
+echo "✅ NVM is working."
 
-# Download and install Node.js:
-nvm install 24 # lts/krypton
+# Install Node.js 24 LTS (Krypton) if not installed
+if nvm list 2>/dev/null | grep -q "24"; then
+    echo "✅ Node.js 24 is already installed."
+else
+    echo "📦 Installing Node.js 24 (LTS Krypton)..."
+    nvm install 24
+    echo "✅ Node.js 24 installed."
+fi
 
-# Verify the Node.js version:
+# Install other Node.js LTS versions
+for version in "lts/hydrogen" "lts/iron" "lts/jod"; do
+    if nvm list 2>/dev/null | grep -q "$version"; then
+        echo "✅ Node.js $version is already installed."
+    else
+        echo "📦 Installing Node.js $version..."
+        nvm install "$version"
+    fi
+done
+
+# Verify the default Node.js version
+echo "🔍 Default Node.js version:"
 node -v
+echo "✅ Node.js verified."
 
-echo "✅ Node.js installed successfully."
+# Enable pnpm if not already enabled
+if command -v pnpm &> /dev/null; then
+    echo "✅ pnpm is already installed."
+else
+    echo "📦 Enabling pnpm via Corepack..."
+    corepack enable pnpm
+    echo "✅ pnpm enabled."
+fi
 
-# Install others node versions
-nvm install lts/hydrogen # v18.20.8
-nvm install lts/iron # v20.19.6
-nvm install lts/jod # v22.21.1
-
-# Download and install pnpm:
-corepack enable pnpm
-
-# Verify pnpm version:
+# Verify pnpm version
 pnpm -v
+echo "✅ pnpm verified."
 
-echo "✅ pnpm installed successfully."
+# Enable Yarn if not already enabled
+if command -v yarn &> /dev/null; then
+    echo "✅ Yarn is already installed."
+else
+    echo "📦 Enabling Yarn via Corepack..."
+    corepack enable yarn
+    echo "✅ Yarn enabled."
+fi
 
-# Download and install Yarn:
-corepack enable yarn
-
-# Verify Yarn version:
+# Verify Yarn version
 yarn -v
+echo "✅ Yarn verified."
 
-echo "✅ Yarn installed successfully."
+# Install Bun if not already installed
+if command -v bun &> /dev/null; then
+    echo "✅ Bun is already installed."
+    bun --version
+else
+    echo "🍙 Installing Bun..."
+    curl -fsSL https://bun.sh/install | bash
+    echo "✅ Bun installed."
+fi
 
-# 🍙 Install Bun
-echo "🍙 Installing Bun..."
-curl -fsSL https://bun.sh/install | bash
-
-# Verify Bun installation:
+# Verify Bun installation
 bun --version
+echo "✅ Bun verified."
 
-echo "✅ Bun installed successfully."
+echo "✅ All Node.js tools installed successfully."
