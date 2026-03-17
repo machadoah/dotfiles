@@ -7,24 +7,55 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-    "prettier": {
-        "allowed": true
+  "agent_servers": {
+    "gemini": {
+      "type": "registry",
     },
-    "terminal": {
-        "font_family": ".ZedMono, JetBrains Mono, Fira Code, monospace"
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "terminal": {
+    "font_family": "FiraCode Nerd Font",
+  },
+  "base_keymap": "VSCode",
+  "buffer_font_family": "FiraCode Nerd Font",
+  "wrap_guides": [80, 120],
+  "icon_theme": {
+    "mode": "system",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
+  },
+  // "ui_font_size": 16,
+  // "buffer_font_size": 16.0,
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark",
+  },
+  "languages": {
+    "Python": {
+      "language_servers": ["ruff", "ty"],
+      "format_on_save": "on",
+      "formatter": "language_server",
     },
-    "wsl_connections": [
-        {
-            "distro_name": "Ubuntu-24.04",
-            "user": null,
-            "projects": []
-        }
-    ],
-    "ui_font_size": 16,
-    "buffer_font_size": 15,
-    "theme": {
-        "mode": "system",
-        "light": "One Light",
-        "dark": "One Dark"
-    }
+  },
+  "auto_install_extensions": {
+    "csv": true,
+    "log": true,
+    "make": true,
+    "sql": true,
+    "dockerfile": true,
+    "git-firefly": true,
+    "java": true,
+    "toml": true,
+    "html": true,
+    "xml": true,
+    "python-requirements": true,
+    "env": true,
+  },
 }
