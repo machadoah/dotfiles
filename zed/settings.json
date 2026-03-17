@@ -39,7 +39,19 @@
   },
   "languages": {
     "Python": {
-      "language_servers": ["ruff", "ty"],
+      "language_servers": ["ruff", "ty", "!basedpyright"],
+      "format_on_save": "on",
+      "formatter": "language_server",
+    },
+    "TypeScript": {
+      "language_servers": ["tsgo", "typescript-language-server"],
+      "format_on_save": "on",
+    },
+    "TSX": {
+      "language_servers": ["typescript-language-server"],
+    },
+    "Go": {
+      // "language_servers": ["gopls"],
       "format_on_save": "on",
       "formatter": "language_server",
     },
@@ -57,5 +69,6 @@
     "xml": true,
     "python-requirements": true,
     "env": true,
+    "tsgo": true,
   },
 }
