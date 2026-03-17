@@ -1,11 +1,3 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent_servers": {
     "gemini": {
@@ -30,8 +22,6 @@
     "light": "Zed (Default)",
     "dark": "Zed (Default)",
   },
-  // "ui_font_size": 16,
-  // "buffer_font_size": 16.0,
   "theme": {
     "mode": "system",
     "light": "Ayu Light",
@@ -51,7 +41,6 @@
       "language_servers": ["typescript-language-server"],
     },
     "Go": {
-      // "language_servers": ["gopls"],
       "format_on_save": "on",
       "formatter": "language_server",
     },
