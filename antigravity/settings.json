@@ -1,0 +1,66 @@
+{
+  "workbench.colorTheme": "Default Light Modern",
+  // "window.zoomLevel": 1,
+  "workbench.iconTheme": "vs-seti",
+
+  // Editor
+  "editor.rulers": [80, 120],
+  "editor.fontFamily": "FiraCode Nerd Font",
+
+  // Terminal
+  "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+  "terminal.integrated.suggest.enabled": false,
+  "terminal.integrated.initialHint": false,
+  "editor.fontSize": 16,
+
+  // WORKBENCH
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.accessibilitySupport": "off",
+
+  // MARKDOWN
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // GEMINI CODE ASSIST
+  "geminicodeassist.project": "third-medium-0vbmb",
+  "geminicodeassist.inlineSuggestions.enableAuto": false,
+
+  // HTML
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // "editor.formatOnSave": true
+  },
+
+  // DOCKER / DOCKER COMPOSE
+  "docker.extension.enableComposeLanguageServer": false,
+  "[dockercompose]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+
+  // TYPESCRIPT
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // JSONC
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // JSON
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+
+  // PYTHON
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "hediet.vscode-drawio.resizeImages": null
+}
