@@ -34,7 +34,19 @@
   },
   "disable_ai": false,
   "agent_servers": {
-    },
+    "opencode-v2": {
+      "default_config_options": {
+        "mode": "plan",
+        "model": "opencode/deepseek-v4.1-flash-free"
+      },
+      "favorite_config_option_values": {
+        "model": [
+          "opencode/deepseek-v4.1-flash-free"
+        ]
+      },
+      "type": "registry"
+    }
+  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
