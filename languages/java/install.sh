@@ -1,7 +1,9 @@
 #!/bin/zsh
 
-: << EOF
-    Install Java (Temurin 17) using SDKMAN.
+set -eo pipefail
+
+: << 'EOF'
+    Install Java 17 (Temurin) using SDKMAN.
 EOF
 
 echo "☕ Java installation script"
@@ -10,36 +12,50 @@ echo "☕ Java installation script"
 if command -v java &> /dev/null; then
     echo "⚠️ Java is already installed:"
     java -version
-    read -p "Press [Enter] to continue anyway or [Ctrl+C] to abort..."
+    read "?Press [Enter] to continue anyway or [Ctrl+C] to abort..."
 fi
 
 echo "🔧 Installing dependencies..."
 sudo apt update
-sudo apt install -y zip unzip curl software-properties-common
+sudo apt install -y zip unzip curl
 
 # Check if SDKMAN is already installed
 if [[ -d "$HOME/.sdkman" ]]; then
     echo "✅ SDKMAN is already installed."
 else
-    echo "📥 Downloading and installing SDKMAN..."
-    curl -s "https://get.sdkman.io" | bash
+    echo "📥 Installing SDKMAN..."
+    curl -fsSL "https://get.sdkman.io" | bash
+    echo "✅ SDKMAN installed successfully."
 fi
 
 # Load SDKMAN into the current shell session
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# Check if Java 17 is already installed via SDKMAN
-if sdk current java 2>/dev/null | grep -q "17.0.17-tem"; then
-    echo "✅ Java 17.0.17-tem is already installed."
-else
-    echo "📥 Installing Java..."
-    sdk install java 17.0.17-tem -y
+echo "🔍 Finding the latest Java 17 Temurin version..."
+JAVA_VERSION="$(sdk list java 2>/dev/null | awk -F'|' '{gsub(/ /,"",$NF); if ($NF ~ /^17\..*-tem$/) print $NF}' | sort -V | tail -n1)"
+if [[ -z "$JAVA_VERSION" ]]; then
+    echo "❌ Could not determine the latest Java 17 Temurin version."
+    exit 1
 fi
+echo "✅ Latest Java 17 Temurin: $JAVA_VERSION"
+
+if [[ "$(sdk current java 2>/dev/null || true)" == *"$JAVA_VERSION"* ]]; then
+    echo "✅ Java $JAVA_VERSION is already the current version."
+else
+    echo "📥 Installing Java $JAVA_VERSION..."
+    export sdkman_auto_answer=true
+    sdk install java "$JAVA_VERSION"
+    unset sdkman_auto_answer
+fi
+
+echo "🔧 Setting Java $JAVA_VERSION as default..."
+export sdkman_auto_answer=true
+sdk default java "$JAVA_VERSION"
+unset sdkman_auto_answer
 
 echo "✅ Java installation completed."
 
 # Verify Java installation
 echo "🔍 Verifying Java installation..."
 java -version
-
 echo "✅ Java installation verified successfully."

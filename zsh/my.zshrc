@@ -125,13 +125,13 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 
 ### --
 
-### SPACESHIP
+### STARSHIP
 eval "$(starship init zsh)"
 
 [[ -f "$HOME/.local/bin/env" ]] && . "$HOME/.local/bin/env"
@@ -171,6 +171,11 @@ alias reditor="micro"
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
+
+# Go (official tarball)
+if [[ -d "/usr/local/go/bin" ]]; then
+    export PATH="/usr/local/go/bin:$PATH"
+fi
 
 # Homebrew
 if [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then

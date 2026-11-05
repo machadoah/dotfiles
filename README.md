@@ -19,22 +19,23 @@ Para instalar os dotfiles, clone este repositório e execute o script de instala
 gh repo clone machadoah/dotfiles
 ```
 
-2.  Navegue até o diretório de instalação:
+2.  Navegue até o diretório do repositório:
 
 ```bash
-cd dotfiles/install
+cd dotfiles
 ```
 
 3.  Execute o script de pré-instalação para Linux:
 
 ```bash
-bash linux-pre-install.sh
+./install/linux-pre-install.sh
 ```
 
 Nele será instalado e configurado:
 
 - Git
 - GitHub CLI
+- curl
 - ZSH
 
 4.  Após a execução do script, você será perguntado se deseja reiniciar o sistema para aplicar as mudanças.
@@ -42,7 +43,7 @@ Nele será instalado e configurado:
 5.  Após o reinício, você deve executar o script principal de instalação:
 
 ```bash
-bash linux-install.sh
+./install/linux-install.sh
 ```
 
 Nele será configurado:
@@ -50,16 +51,18 @@ Nele será configurado:
 - Oh My Zsh
 - Plugins do ZSH (Zinit, fast-syntax-highlighting, autosuggestions, completions)
 - Starship prompt
+- Link do `zsh/my.zshrc` para `~/.zshrc` (com backup do arquivo anterior)
 
 ### Instalação de Linguagens
 
 Para instalar as linguagens de programação, execute os scripts correspondentes no diretório `languages/`. Por exemplo, para instalar Python:
 
 ```bash
-bash languages/python/install.sh
+./languages/python/install.sh
 ```
 
 > [!NOTE]
+> Os scripts de instalação assumem uma distribuição Debian/Ubuntu (usam `apt`).
 > Analise os scripts antes de executá-los para garantir que atendam às suas necessidades e não causem conflitos com sua configuração atual.
 > Os scripts seguem a instalação de um setup que eu utilizo.
 > Por exemplo, o script de Python instala o `UV`, outras pessoas podem querer utilizar `pipx` + `poetry` + `pyenv` ou outras ferramentas.

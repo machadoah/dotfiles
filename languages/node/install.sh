@@ -1,6 +1,8 @@
 #!/bin/zsh
 
-: << EOF
+set -eo pipefail
+
+: << 'EOF'
     Install Node.js using NVM, plus pnpm, Yarn, and Bun.
 EOF
 
@@ -11,7 +13,7 @@ if [[ -d "$HOME/.nvm" ]]; then
     echo "✅ NVM is already installed."
 else
     echo "📦 Installing NVM..."
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | PROFILE=/dev/null bash
     echo "✅ NVM installed successfully."
 fi
 
@@ -25,23 +27,26 @@ nvm --version
 echo "✅ NVM is working."
 
 # Install Node.js 24 LTS (Krypton) if not installed
-if nvm list 2>/dev/null | grep -q "24"; then
-    echo "✅ Node.js 24 is already installed."
-else
+if [[ "$(nvm version 24)" == "N/A" ]]; then
     echo "📦 Installing Node.js 24 (LTS Krypton)..."
     nvm install 24
-    echo "✅ Node.js 24 installed."
+else
+    echo "✅ Node.js 24 is already installed."
 fi
 
 # Install other Node.js LTS versions
 for version in "lts/hydrogen" "lts/iron" "lts/jod"; do
-    if nvm list 2>/dev/null | grep -q "$version"; then
-        echo "✅ Node.js $version is already installed."
-    else
+    if [[ "$(nvm version "$version")" == "N/A" ]]; then
         echo "📦 Installing Node.js $version..."
         nvm install "$version"
+    else
+        echo "✅ Node.js $version is already installed."
     fi
 done
+
+# Keep Node.js 24 as the default
+nvm alias default 24
+nvm use default
 
 # Verify the default Node.js version
 echo "🔍 Default Node.js version:"
@@ -75,9 +80,11 @@ yarn -v
 echo "✅ Yarn verified."
 
 # Install Bun if not already installed
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 if command -v bun &> /dev/null; then
     echo "✅ Bun is already installed."
-    bun --version
 else
     echo "🍙 Installing Bun..."
     curl -fsSL https://bun.sh/install | bash
