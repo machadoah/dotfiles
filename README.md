@@ -6,7 +6,6 @@ Esse repositório contém meus arquivos de configuração pessoal (dotfiles) par
 
 - `install/`: Scripts de instalação para configurar o ambiente.
 - `languages/`: Configurações específicas para linguagens de programação.
-- `p-cli/`: CLI pessoal em Go para tarefas do dia a dia.
 - `zed/`: Configurações do editor Zed.
 - `zsh/`: Configurações do Zsh.
 
@@ -65,17 +64,6 @@ bash languages/python/install.sh
 > Os scripts seguem a instalação de um setup que eu utilizo.
 > Por exemplo, o script de Python instala o `UV`, outras pessoas podem querer utilizar `pipx` + `poetry` + `pyenv` ou outras ferramentas.
 > Assim, como no Node, instalo o `nvm`, e também o `bun`.
-
-### p-cli
-
-O `p-cli` é um utilitário pessoal em Go + Cobra. Para instalar:
-
-```bash
-cd p-cli
-make install
-```
-
-Consulte [`p-cli/README.md`](p-cli/README.md) para os comandos disponíveis.
 
 ## Contribuição
 
